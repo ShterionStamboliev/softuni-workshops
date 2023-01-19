@@ -1,0 +1,21 @@
+{
+    "configurations": [
+
+    {
+        "name": "Launch Program",
+        "program": "${workspaceFolder}/src/index.js",
+        "request": "launch",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "node"
+    },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: test",
+            "request": "launch",
+            "command": "npm run test",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
