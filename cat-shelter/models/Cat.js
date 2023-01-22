@@ -3,18 +3,17 @@ const fs = require('fs');
 const path = require('path');
 
 class Cat {
-    constructor(name, description, image, breed) {
+    constructor(name, description, imageUrl, breed) {
         this.name = name;
         this.description = description;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.breed = breed;
     }
 
-    save() {
-        this.id = db.cats[db.cats.length - 1].id + 1;
-        db.cats.push(this);
-        const json = JSON.stringify(db, null, 2);
-        fs.writeFileSync(path.resolve(__dirname, '../catdb.json'), json);
+    static save(cat) {
+        db.cats.push(cat);
+        const jsonData = JSON.stringify(db, null, 2);
+        fs.writeFileSync(path.resolve(__dirname, '../catdb.json'), jsonData);
     }
 }
 

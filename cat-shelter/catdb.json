@@ -1,28 +1,10 @@
 {
   "cats": [
     {
-      "name": "Gosho",
-      "description": "Mnogo dere",
-      "image": "https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg",
-      "breed": "ulichna"
-    },
-    {
-      "name": "Gosho",
-      "description": "Mnogo dere",
-      "image": "https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg",
-      "breed": "ulichna"
-    },
-    {
-      "name": "Gosho",
-      "description": "Mnogo dere",
-      "image": "https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg",
-      "breed": "ulichna"
-    },
-    {
-      "name": "Gosho",
-      "description": "Mnogo dere",
-      "image": "https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg",
-      "breed": "ulichna"
+      "name": "ffff",
+      "description": "ffffff",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
+      "breed": "Fluffy Cat"
     }
   ]
 }

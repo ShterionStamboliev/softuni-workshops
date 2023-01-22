@@ -1,7 +1,29 @@
-const router = require('express').Router();
+const Cat = require('../models/Cat');
 
-router.get('/add-breed/', (req, res) => {
-   res.render('addBreed'); 
-});
+const getAddBreed = (req, res) => {
+   res.render('addBreed');
+};
 
-module.exports = router;
+const getAddCat = (req, res) => {
+   res.render('addCat');
+};
+
+const postAddCat = (req, res) => {
+   const { name, description, imageUrl, breed } = req.body;
+   let cat = new Cat(name, description, imageUrl, breed );
+   Cat.save(cat);
+   console.log(req.body);
+   res.redirect('/');
+}
+
+const postAddBreed = (req, res) => {
+   res.send('Form submitted');
+};
+
+
+module.exports = {
+   getAddBreed,
+   getAddCat,
+   postAddBreed,
+   postAddCat
+}
