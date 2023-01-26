@@ -27,6 +27,10 @@ const getAttachAccessory = async (req, res) => {
     const accessories = await Accessory.find().lean();
 
     res.render('attachAccessory', { cube, accessories });
+};
+
+const postAttachAccessory = async (req, res) => {
+    
 }
 
 module.exports = {
