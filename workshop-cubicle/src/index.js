@@ -12,7 +12,6 @@ app.use(express.static('./static'));
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 
-
 db()
     .then(() => app.listen(port.PORT, () => console.log(`Server is running on port ${port.PORT}...`)))
     .catch((err) => console.log(err));
