@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Accessory = require('../models/Accessories');
 
-
 router.get('/create', (req, res) => {
     res.render('createAccessory');
 });
@@ -12,6 +11,6 @@ router.post('/create', async (req, res) => {
     await Accessory.create({ name, description, imageUrl });
 
     res.redirect('/');
-})
+});
 
 module.exports = router;
