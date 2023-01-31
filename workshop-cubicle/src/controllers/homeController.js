@@ -27,10 +27,15 @@ const getAboutPage = (req, res) => {
 
 const getErrorPage = (req, res) => {
     res.render('404');
+};
+
+const getRegisterPage = (req, res) => {
+    res.render('register');
 }
 
 module.exports = {
     getHomePage,
     getAboutPage,
-    getErrorPage
+    getErrorPage,
+    getRegisterPage
 }
