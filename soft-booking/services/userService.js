@@ -5,12 +5,9 @@ const User = require('../models/User');
 const token_secret = 'sadf243jnasdfas';
 
 async function register(username, password) {
-    const exist = await User.findOne({
-        username
-    }).collation({
-        locale: 'en', strength: 2
-    });
-    if (exist) {
+    const exists = await User.findOne({ username });
+
+    if (exists) {
         throw new Error('Username is already taken');
     }
 
@@ -22,6 +19,7 @@ async function register(username, password) {
     });
 
     const token = createSession(user);
+    
     return token;
 }
 

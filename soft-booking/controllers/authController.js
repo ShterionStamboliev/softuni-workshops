@@ -1,4 +1,5 @@
 const { register } = require('../services/userService');
+const { parseError } = require('../utility/parser');
 
 const authController = require('express').Router();
 
@@ -11,7 +12,7 @@ authController.post('/register', async (req, res) => {
         if (req.body.username === '' || req.body.password === '') {
             throw new Error('All fields are required');
         }
-        if (req.body.password !== req.body.repass) {
+        if (req.body.password !== req.body.repassword) {
             throw new Error('Passwords must match');
         }
         const token = await register(req.body.username, req.body.password);
@@ -20,8 +21,8 @@ authController.post('/register', async (req, res) => {
         res.redirect('/auth/register');
 
     } catch(err) {
-
-        const errors = [err.message];
+        console.log(err);
+        const errors = parseError(err);
 
         res.render('register', {
             title: 'Register page',

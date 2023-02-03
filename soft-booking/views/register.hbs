@@ -1,8 +1,8 @@
 <h1>Register page</h1>
 
 <form action="/auth/register" method="POST">
-<label for="username">Username: <input type="text" name="username"></label>
-<label for="username">Password: <input type="password" name="password"></label>
-<label for="username">Re-Password: <input type="password" name="re-password"></label>
+<label for="username">Username: <input type="text" name="username" value="{{body.username}}"></label>
+<label for="password">Password: <input type="password" name="password"></label>
+<label for="repassword">Re-Password: <input type="password" name="repassword"></label>
 <button>Register</button>
 </form>
