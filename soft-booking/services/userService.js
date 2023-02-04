@@ -4,16 +4,23 @@ const User = require('../models/User');
 
 const token_secret = 'sadf243jnasdfas';
 
-async function register(username, password) {
-    const exists = await User.findOne({ username });
+async function register(email, username, password) {
+    const usernameExists = await User.findOne({ username });
 
-    if (exists) {
+    if (usernameExists) {
         throw new Error('Username is already taken');
+    }
+
+    const emailExists = await User.findOne({ email });
+
+    if (emailExists) {
+        throw new Error('Email is already taken');
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
+        email,
         username,
         hashPassword
     });
@@ -23,25 +30,26 @@ async function register(username, password) {
     return token;
 }
 
-async function login(username, password) {
-    const user = await User.findOne({ username });
+async function login(email, password) {
+    const user = await User.findOne({ email });
     if (!user) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     }
 
     const match = await bcrypt.compare(password, user.hashPassword);
 
     if (!match) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     }
 
     const token = createSession(user);
     return token;
 }
 
-function createSession({ _id, username }) {
+function createSession({ _id, email, username }) {
     const payload = {
         _id,
+        email,
         username
     }
 
