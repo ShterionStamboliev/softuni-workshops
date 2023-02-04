@@ -50,8 +50,8 @@ function createSession({ _id, username }) {
 }
 
 
-function tokenVerify() {
-
+function tokenVerify(token) {
+    return jwt.verify(token, token_secret);
 }
 
 module.exports = {
