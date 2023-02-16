@@ -1,0 +1,28 @@
+const jwt = require('../lib/jwt');
+const { SECRET } = require('../constants');
+
+exports.auth = async (req, res, next) => {
+    const token = req.cookies['session'];
+
+    if (token) {
+        try {
+            const decodedToken = await jwt.verify(token, SECRET);
+
+            req.user = decodedToken;
+            res.locals.isAuthenticated = true;
+            res.locals.user = decodedToken;
+
+        } catch (err) {
+            res.clearCookie('session');
+            return res.status(401).render('404');
+        }
+    }
+    next();
+};
+
+exports.isAuthorized = (req, res, next) => {
+    if (!req.user) {
+        return res.render('404');
+    }
+    next();
+};
