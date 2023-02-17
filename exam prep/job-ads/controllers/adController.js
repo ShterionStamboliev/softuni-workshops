@@ -13,8 +13,7 @@ router.get('/ad/create', isAuthorized, (req, res) => {
 });
 
 router.post('/ad/create', isAuthorized, async (req, res) => {
-    // console.log(req.user.email);
-    const adData = { ...req.body, email: req.user.email };
+    const adData = { ...req.body, author: req.user._id };
 
     try {
         await adService.createAd(adData);
@@ -24,12 +23,17 @@ router.post('/ad/create', isAuthorized, async (req, res) => {
     }
 });
 
-router.get('/ad/:adId/details', isAuthorized, async (req, res) => {
-    const adId = await adService.getById(req.params.adId).lean();
+router.get('/ad/:adId/details', async (req, res) => {
+    const adId = await adService.getOneDetails(req.params.adId).lean();
+    const isAuthor = req.user?._id == adId.author._id;
+    res.render('details', { ...adId, author: adId.author.email, isAuthor });
+});
 
-    const isAuthor = req.user?._id == adId.author?._id;
-    console.log(isAuthor);
-    res.render('details', { ...adId, isAuthor });
+router.get('/ad/:adId/apply', isAuthorized, async (req, res) => {
+    await adService.hasApplied(req.user._id, req.params.adId);
+
+    res.redirect(`/ad/${req.params.adId}/details`);
+
 });
 
 
